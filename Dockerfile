@@ -7,7 +7,7 @@ WORKDIR /app/server
 
 RUN pip install --upgrade pip
 RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt --no-cache-dir
+RUN pip install --no-cache-dir -r requirements.txt
 RUN export FLASK_ENV=production
 
 ENTRYPOINT ["python3", "run.py", "False", "0.0.0.0", "80"]

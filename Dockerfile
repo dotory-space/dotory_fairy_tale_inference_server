@@ -5,7 +5,7 @@ COPY . /app/server
 
 WORKDIR /app/server
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt --no-cache-dir
 RUN export FLASK_ENV=production
 
 ENTRYPOINT ["python3", "run.py", "False", "0.0.0.0", "80"]

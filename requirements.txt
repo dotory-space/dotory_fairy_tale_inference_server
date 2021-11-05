@@ -1,3 +1,3 @@
 flask
 flask_cors
--e git+https://github.com/dotory-space/dotory_fairy_tale_generator.git
+git+https://github.com/dotory-space/dotory_fairy_tale_generator.git

@@ -12,19 +12,21 @@ RUN apt install vim -y
 RUN apt-get install -y git
 
 # Install python 3.9
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt install -y python3.9
 
 # Install pip
-RUN apt install -y python3-pip
-RUN pip3 install --upgrade pip setuptools wheel
-RUN pip3 --version
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python3.9 get-pip.py
 
+COPY . /app/server
 
-# COPY . /app/server
+WORKDIR /app/server
 
-# WORKDIR /app/server
+RUN pip install --upgrade pip setuptools wheel
 
+RUN pip install --no-cache-dir -r requirements.txt
+RUN export FLASK_ENV=production
 
-# RUN pip3 install --no-cache-dir -r requirements.txt
-# RUN export FLASK_ENV=production
-
-ENTRYPOINT ["python3", "run.py", "False", "0.0.0.0", "80"]
+ENTRYPOINT ["python3.9", "run.py", "False", "0.0.0.0", "80"]

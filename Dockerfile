@@ -17,8 +17,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt install -y python3.9
 
 # Install pip
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-RUN python3.9 get-pip.py
+RUN apt install -y python3-pip
 
 COPY . /app/server
 

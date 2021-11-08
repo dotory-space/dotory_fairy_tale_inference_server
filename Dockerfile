@@ -8,6 +8,7 @@ RUN apt-get install -y git
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt install -y python3.9 python3-pip
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 COPY . /app/server
 

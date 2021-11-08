@@ -4,6 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 LABEL maintainer="developer@dotoryspace.com"
 
 RUN apt update
+RUN apt-get install git
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt install -y python3.9 python3-pip

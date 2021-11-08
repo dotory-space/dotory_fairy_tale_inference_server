@@ -1,6 +1,5 @@
-LABEL maintainer="developer@dotoryspace.com"
-
 FROM ubuntu:18.04
+LABEL maintainer="developer@dotoryspace.com"
 
 ARG DEBIAN_FRONTEND=noninteractive
 

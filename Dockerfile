@@ -14,7 +14,7 @@ RUN apt-get install -y git
 # Install python 3.9
 
 # Install pip
-RUN apt install python3-pip
+RUN apt install -y python3-pip
 
 COPY . /app/server
 

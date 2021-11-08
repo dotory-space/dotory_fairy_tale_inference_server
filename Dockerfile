@@ -1,11 +1,10 @@
 FROM ubuntu:18.04
 LABEL maintainer="developer@dotoryspace.com"
 
-RUN apt update
-RUN apt install software-properties-common
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt upgrade
-RUN apt install python3.9
+RUN sudo apt update
+RUN sudo apt install software-properties-common
+RUN sudo add-apt-repository ppa:deadsnakes/ppa
+RUN sudo apt install python3.9
 
 COPY . /app/server
 

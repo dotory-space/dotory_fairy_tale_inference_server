@@ -4,7 +4,7 @@ LABEL maintainer="developer@dotoryspace.com"
 RUN apt update
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt install -y python3.9
+RUN apt install -y python3.9 python3-pip
 
 COPY . /app/server
 

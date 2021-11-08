@@ -18,7 +18,7 @@ RUN apt install -y python3.9
 
 # Install pip
 RUN apt install python3-pip -y
-RUN python -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade pip
 
 COPY . /app/server
 

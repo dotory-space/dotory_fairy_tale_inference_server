@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 LABEL maintainer="developer@dotoryspace.com"
 
 RUN apt update
-RUN apt install software-properties-common
+RUN apt-get install software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt install python3.9
 

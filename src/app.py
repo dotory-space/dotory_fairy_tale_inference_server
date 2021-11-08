@@ -8,14 +8,13 @@ class App:
         app = Flask(__name__)
         CORS(app)
 
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model = get_model('model.pt', 'config.json', device)
+        model = get_model('model.pt', 'config.json')
         tokenizer = get_tokenizer()
 
         @app.route('/', methods=('GET', ))
         def route_get_home():
-            sentences = generate_sentences(model, tokenizer, '옛날에 한 소녀가 살고 있었어요.', device)
-            return 'dotory fairy tale generator server'
+            sentences = generate_sentences(model, tokenizer, '옛날에 한 소녀가 살고 있었어요.')
+            return sentences
 
         @app.route('/v1/models/model/infer', methods=('POST', ))
         def route_post_models_model_infer():

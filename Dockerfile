@@ -6,10 +6,7 @@ COPY . /app/server
 WORKDIR /app/server
 
 RUN pip install --upgrade pip
-RUN pip3 install --upgrade pip
-
-CMD ["python", "--version"]
-CMD ["pip", "--version"]
+RUN pip3 install --upgrade setuptools pip
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 RUN export FLASK_ENV=production

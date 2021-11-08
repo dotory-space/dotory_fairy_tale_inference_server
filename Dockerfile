@@ -1,14 +1,25 @@
-FROM ubuntu:18.04
-ARG DEBIAN_FRONTEND=noninteractive
-
 LABEL maintainer="developer@dotoryspace.com"
 
+FROM ubuntu:18.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Update apt packages
 RUN apt update
+RUN apt upgrade -y
+
+# Install vim, git
+RUN apt install vim -y
 RUN apt-get install -y git
+
+# Install python 3.9
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt install -y python3.9 python3-pip
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN apt install -y python3.9
+
+# Install pip
+RUN apt install python3-pip -y
+RUN python -m pip install --upgrade pip
 
 COPY . /app/server
 

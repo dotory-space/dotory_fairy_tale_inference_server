@@ -16,14 +16,9 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 RUN export PATH="$HOME/.cargo/bin:$PATH"
 
 # Install python 3.9
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt install -y python3.9
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
 
 # Install pip
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-RUN python3 get-pip.py
+RUN sudo apt install python3-pip
 
 COPY . /app/server
 

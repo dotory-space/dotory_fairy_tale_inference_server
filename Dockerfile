@@ -11,14 +11,10 @@ RUN apt upgrade -y
 RUN apt install vim -y
 RUN apt-get install -y git
 
-# Install rust
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-RUN export PATH="$HOME/.cargo/bin:$PATH"
-
 # Install python 3.9
 
 # Install pip
-RUN sudo apt install python3-pip
+RUN apt install python3-pip
 
 COPY . /app/server
 

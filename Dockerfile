@@ -11,6 +11,10 @@ RUN apt upgrade -y
 RUN apt install vim -y
 RUN apt-get install -y git
 
+# Install rust
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+RUN export PATH="$HOME/.cargo/bin:$PATH"
+
 # Install python 3.9
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa

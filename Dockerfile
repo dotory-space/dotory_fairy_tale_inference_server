@@ -14,7 +14,7 @@ RUN apt-get install -y git
 # Install python 3.9
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt install -y python3.9
+RUN apt install -y python3.9 python3.9-distutils
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
 
 # Install pip

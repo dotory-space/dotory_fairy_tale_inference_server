@@ -1,19 +1,17 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from dotory_fairy_tale_generator import get_model, get_tokenizer, generate_sentences, get_device
+from dotory_fairy_tale_generator import FairyTaleGenerator
 
 class App:
     def __init__(self):
         app = Flask(__name__)
         CORS(app)
 
-        device = get_device()
-        model = get_model('model.pt', 'config.json', device)
-        tokenizer = get_tokenizer()
+        fairy_tale_generator = FairyTaleGenerator('model.pt', 'config.json', 'tokenizer')
 
         @app.route('/', methods=('GET', ))
         def route_get_home():
-            sentences = generate_sentences(model, tokenizer, '옛날에 한 소녀가 살고 있었어요.')
+            sentences = fairy_tale_generator.generate('옛날에 한 소녀가 살고 있었어요.')
             return sentences
 
         @app.route('/v1/models/model/infer', methods=('POST', ))

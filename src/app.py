@@ -7,7 +7,7 @@ class App:
         app = Flask(__name__)
         CORS(app)
 
-        fairy_tale_generator = FairyTaleGenerator('model.pt', 'config.json', 'tokenizer')
+        fairy_tale_generator = FairyTaleGenerator('trained/checkpoint.tar', 'trained/config.json', 'trained/')
 
         @app.route('/', methods=('GET', ))
         def route_get_home():

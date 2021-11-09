@@ -1,14 +1,14 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from dotory_fairy_tale_generator import get_model, get_tokenizer, generate_sentences
-import torch
+from dotory_fairy_tale_generator import get_model, get_tokenizer, generate_sentences, get_device
 
 class App:
     def __init__(self):
         app = Flask(__name__)
         CORS(app)
 
-        model = get_model('model.pt', 'config.json')
+        device = get_device()
+        model = get_model('model.pt', 'config.json', device)
         tokenizer = get_tokenizer()
 
         @app.route('/', methods=('GET', ))

@@ -1,3 +1,6 @@
 flask==2.0.2
 flask_cors==3.0.10
-git+https://github.com/dotory-space/dotory_fairy_tale_generator.git
+transformers==4.12.3
+torch==1.9
+nltk==3.6.5
+requests==2.20.0

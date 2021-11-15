@@ -27,7 +27,6 @@ class App:
                 'data': {
                     'input_sentence': sentence,
                     'output_sentences': sentences,
-                    'type': type(sentences[0]),
                     'encoded': str(sentences[0].encode(), encoding='utf-8'),
                 },
             })

@@ -17,9 +17,16 @@ class App:
 
         @app.route('/v1/test1', methods=('GET', ))
         def route_test1():
-            sentences = fairy_tale_generator.generate('옛날에 한 소녀가 살고 있었어요.')
+            sentence = '옛날에 한 소녀가 살고 있었어요.'
+            sentences = fairy_tale_generator.generate(sentence)
+            print(sentences)
             return jsonify({
-                'data': sentences,
+                'data': {
+                    'input_sentence': sentence,
+                    'output_sentences': sentences,
+                    'encoded_output_sentence': sentences[0].encode('utf-8'),
+                    'output_sentence_type': type(sentences[0]),
+                },
             })
         
         @app.route('/v1/test2', methods=('GET', ))

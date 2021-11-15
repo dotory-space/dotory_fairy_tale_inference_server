@@ -11,16 +11,31 @@ class App:
 
         @app.route('/', methods=('GET', ))
         def route_get_home():
-            sentences = fairy_tale_generator.generate('옛날에 한 소녀가 살고 있었어요.')
-            return sentences
-
-        @app.route('/v1/models/model/infer', methods=('POST', ))
-        def route_post_models_model_infer():
-            inputs = request.json['inputs']
-            outputs = ""
-
             return jsonify({
-                'inputs': 'hello'          
+                'data': 'HELLO DOTORY'
+            })
+
+        @app.route('/v1/test1', methods=('GET', ))
+        def route_test1():
+            sentences = fairy_tale_generator.generate('옛날에 한 소녀가 살고 있었어요.')
+            return jsonify({
+                'data': sentences,
+            })
+        
+        @app.route('/v1/test2', methods=('GET', ))
+        def route_test2():
+            sentence = request.args.get('sentence')
+            sentences = fairy_tale_generator.generate(sentence)
+            return jsonify({
+                'data': sentences,
+            })
+        
+        @app.route('/v1/test3', methods=('POST', ))
+        def route_test3():
+            sentence = request.json['sentence']
+            sentences = fairy_tale_generator.generate(sentence)
+            return jsonify({
+                'data': sentences,
             })
         
         self.app = app

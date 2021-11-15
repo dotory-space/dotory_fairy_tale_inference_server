@@ -19,13 +19,14 @@ class App:
         def route_test1():
             sentence = '옛날에 한 소녀가 살고 있었어요.'
             sentences = fairy_tale_generator.generate(sentence)
-            print(sentences)
+            print(1, sentences)
+            print(2, type(sentences[0]))
+            print(3, sentences[0].encode())
+            print(3, str(sentences[0].encode(), encoding='utf-8'))
             return jsonify({
                 'data': {
                     'input_sentence': sentence,
                     'output_sentences': sentences,
-                    'encoded_output_sentence': sentences[0].decode('utf8'),
-                    'output_sentence_type': type(sentences[0]),
                 },
             })
         

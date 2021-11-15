@@ -24,7 +24,7 @@ class App:
                 'data': {
                     'input_sentence': sentence,
                     'output_sentences': sentences,
-                    'encoded_output_sentence': sentences[0].encode('utf-8'),
+                    'encoded_output_sentence': sentences[0].decode('utf8'),
                     'output_sentence_type': type(sentences[0]),
                 },
             })
@@ -33,6 +33,7 @@ class App:
         def route_test2():
             sentence = request.args.get('sentence')
             sentences = fairy_tale_generator.generate(sentence)
+            sentences = [s.decode('utf8') for s in sentences]
             return jsonify({
                 'data': sentences,
             })

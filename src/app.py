@@ -7,27 +7,29 @@ class App:
         app = Flask(__name__)
         CORS(app)
 
+        app.config['JSON_AS_ASCII'] = False
+
         fairy_tale_generator = FairyTaleGenerator('trained/checkpoint.tar', 'trained/', 'trained/config.json')
 
         @app.route('/', methods=('GET', ))
         def route_get_home():
+            data = 'HELLO DOTORY'
             return jsonify({
-                'data': 'HELLO DOTORY'
+                'data': data
             })
 
         @app.route('/v1/test1', methods=('GET', ))
         def route_test1():
             sentence = '옛날에 한 소녀가 살고 있었어요.'
             sentences = fairy_tale_generator.generate(sentence)
-            print(1, sentences)
-            print(2, type(sentences[0]))
-            print(3, sentences[0].encode())
-            print(3, str(sentences[0].encode(), encoding='utf-8'))
+
             return jsonify({
                 'data': {
                     'input_sentence': sentence,
                     'output_sentences': sentences,
-                    'encoded': str(sentences[0].encode(), encoding='utf-8'),
+                    'encoded': str(sentences[0]),
+                    'str_type': str(type(sentences[0])),
+                    '': str(),
                 },
             })
         

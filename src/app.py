@@ -13,41 +13,43 @@ class App:
 
         @app.route('/', methods=('GET', ))
         def route_get_home():
-            data = 'HELLO DOTORY'
             return jsonify({
-                'data': data
+                'data': 'HELLO DOTORY'
             })
 
         @app.route('/v1/test1', methods=('GET', ))
         def route_test1():
-            sentence = '옛날에 한 소녀가 살고 있었어요.'
-            sentences = fairy_tale_generator.generate(sentence)
+            input_sentence = '옛날에 한 소녀가 살고 있었어요.'
+            output_sentences = fairy_tale_generator.generate(input_sentence)
 
             return jsonify({
                 'data': {
-                    'input_sentence': sentence,
-                    'output_sentences': sentences,
-                    'encoded': str(sentences[0]),
-                    'str_type': str(type(sentences[0])),
-                    '': str(),
+                    'input_sentence': input_sentence,
+                    'output_sentences': output_sentences,
                 },
             })
         
         @app.route('/v1/test2', methods=('GET', ))
         def route_test2():
-            sentence = request.args.get('sentence')
-            sentences = fairy_tale_generator.generate(sentence)
-            sentences = [s.decode('utf8') for s in sentences]
+            input_sentence = request.args.get('sentence')
+            output_sentences = fairy_tale_generator.generate(input_sentence)
+            
             return jsonify({
-                'data': sentences,
+                'data': {
+                    'input_sentence': input_sentence,
+                    'output_sentences': output_sentences,
+                },
             })
         
         @app.route('/v1/test3', methods=('POST', ))
         def route_test3():
-            sentence = request.json['sentence']
-            sentences = fairy_tale_generator.generate(sentence)
+            input_sentence = request.json['sentence']
+            output_sentences = fairy_tale_generator.generate(input_sentence)
             return jsonify({
-                'data': sentences,
+                'data': {
+                    'input_sentence': input_sentence,
+                    'output_sentences': output_sentences,
+                },
             })
         
         self.app = app

@@ -49,8 +49,8 @@ class App:
 
             style_transfered_image = style_transferer.transfer(Image.open(file_path))
         
-            result_image_dir_path = "resources/result_image"
-            result_file_path = result_image_dir_path + datetime_string + file.filename
+            result_image_dir_path = "resources/result_image/"
+            result_file_path = result_image_dir_path + datetime_string + "-" + file.filename
             os.makedirs(result_image_dir_path, exist_ok=True)
             style_transfered_image.save(result_file_path)
 

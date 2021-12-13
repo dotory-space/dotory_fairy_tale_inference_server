@@ -44,14 +44,14 @@ class App:
             datetime_string = datetime.today().strftime("%Y%m%d%H%M%S")
             file = request.files['image']
             file_path = image_dir_path + datetime_string + "-" + file.filename
-            os.makedirs(image_dir_path, exists_ok=True)
+            os.makedirs(image_dir_path, exist_ok=True)
             file.save(file_path)
 
             style_transfered_image = style_transferer.transfer(Image.open(file_path))
         
             result_image_dir_path = "resources/result_image"
             result_file_path = result_image_dir_path + datetime_string + file.filename
-            os.makedirs(result_image_dir_path, exists_ok=True)
+            os.makedirs(result_image_dir_path, exist_ok=True)
             style_transfered_image.save(result_file_path)
 
             return send_file(result_file_path, mimetype='image/' + get_extenstion_of_file_name(file.filename))

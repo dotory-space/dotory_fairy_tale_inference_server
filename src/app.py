@@ -38,7 +38,7 @@ class App:
                 },
             })
         
-        @app.route('/v1/test2', methods=('GET', ))
+        @app.route('/v1/test2', methods=('POST', ))
         def route_test2():
             image_dir_path = "resources/temp_image/"
             datetime_string = datetime.today().strftime("%Y%m%d%H%M%S")

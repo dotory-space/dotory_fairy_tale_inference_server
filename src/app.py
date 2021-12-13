@@ -38,8 +38,8 @@ class App:
                 },
             })
         
-        @app.route('/v1/test2', methods=('POST', ))
-        def route_test2():
+        @app.route('/v1/fairy-tale-images', methods=('POST', ))
+        def route_fairy_tale_images():
             working_dir_path = os.getcwd()
             image_dir_path = working_dir_path + "resources/temp_image/"
             datetime_string = datetime.today().strftime("%Y%m%d%H%M%S")
@@ -58,8 +58,8 @@ class App:
             return send_file(result_file_path, mimetype='image/' + get_extenstion_of_file_name(file.filename))
         
         
-        @app.route('/v1/test3', methods=('POST', ))
-        def route_test3():
+        @app.route('/v1/fairy-tale-sentences', methods=('POST', ))
+        def route_fairy_tale_sentences():
             input_sentence = request.json['sentence']
             output_sentences = fairy_tale_generator.generate(input_sentence)
             return jsonify({

@@ -40,7 +40,8 @@ class App:
         
         @app.route('/v1/test2', methods=('POST', ))
         def route_test2():
-            image_dir_path = "resources/temp_image/"
+            working_dir_path = os.getcwd()
+            image_dir_path = working_dir_path + "resources/temp_image/"
             datetime_string = datetime.today().strftime("%Y%m%d%H%M%S")
             file = request.files['image']
             file_path = image_dir_path + datetime_string + "-" + file.filename
@@ -49,7 +50,7 @@ class App:
 
             style_transfered_image = style_transferer.transfer(Image.open(file_path))
         
-            result_image_dir_path = "resources/result_image/"
+            result_image_dir_path = working_dir_path + "resources/result_image/"
             result_file_path = result_image_dir_path + datetime_string + "-" + file.filename
             os.makedirs(result_image_dir_path, exist_ok=True)
             style_transfered_image.save(result_file_path)

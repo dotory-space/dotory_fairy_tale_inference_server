@@ -48,7 +48,7 @@ class App:
             os.makedirs(image_dir_path, exist_ok=True)
             file.save(file_path)
 
-            style_transfered_image = style_transferer.transfer(Image.open('resources/image/abstract-image-' + random.randrange(1, 29) + '.jpeg'), Image.open(file_path))
+            style_transfered_image = style_transferer.transfer(Image.open('resources/image/abstract-image-' + str(random.randrange(1, 29) + '.jpeg')), Image.open(file_path))
         
             result_image_dir_path = working_dir_path + "resources/result_image/"
             result_file_path = result_image_dir_path + datetime_string + "-" + file.filename

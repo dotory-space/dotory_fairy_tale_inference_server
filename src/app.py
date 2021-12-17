@@ -5,10 +5,10 @@ from dotory_fairy_tale_image_style_transferer import StyleTransferer
 from PIL import Image
 from datetime import datetime
 import os
+import random
 
 def get_extenstion_of_file_name(file_name):
     return file_name.split('.')[-1]
-
 
 class App:
     def __init__(self):
@@ -18,7 +18,7 @@ class App:
         app.config['JSON_AS_ASCII'] = False
 
         fairy_tale_generator = FairyTaleGenerator('trained/checkpoint.tar', 'trained/', 'trained/config.json')
-        style_transferer = StyleTransferer(Image.open('resources/image/abstract-image-13.jpeg'))
+        style_transferer = StyleTransferer()
 
         @app.route('/', methods=('GET', ))
         def route_get_home():
@@ -48,7 +48,7 @@ class App:
             os.makedirs(image_dir_path, exist_ok=True)
             file.save(file_path)
 
-            style_transfered_image = style_transferer.transfer(Image.open(file_path))
+            style_transfered_image = style_transferer.transfer(Image.open('resources/image/abstract-image-' + random.randrange(1, 29) + '.jpeg'), Image.open(file_path))
         
             result_image_dir_path = working_dir_path + "resources/result_image/"
             result_file_path = result_image_dir_path + datetime_string + "-" + file.filename

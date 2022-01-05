@@ -21,7 +21,7 @@ class App:
             'trained/checkpoint.tar',
             'trained/',
             'trained/config.json',
-            "/resources/filtering.txt"
+            "resources/filtering.txt"
         )
         style_transferer = StyleTransferer()
 

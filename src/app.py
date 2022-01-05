@@ -17,7 +17,12 @@ class App:
 
         app.config['JSON_AS_ASCII'] = False
 
-        fairy_tale_generator = FairyTaleGenerator('trained/checkpoint.tar', 'trained/', 'trained/config.json')
+        fairy_tale_generator = FairyTaleGenerator(
+            'trained/checkpoint.tar',
+            'trained/',
+            'trained/config.json',
+            "/resources/filtering.txt"
+        )
         style_transferer = StyleTransferer()
 
         @app.route('/', methods=('GET', ))

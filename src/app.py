@@ -18,10 +18,9 @@ class App:
         app.config['JSON_AS_ASCII'] = False
 
         fairy_tale_generator = FairyTaleGenerator(
-            'trained/checkpoint.tar',
-            'trained/',
-            'trained/config.json',
-            "resources/filtering.txt"
+            'generator_config_20220327/labeled_5sentence_344_checkpoint',
+            'generator_config_20220327/labeled_first_sentence_344.txt',
+            'generator_config_20220327/filtering.txt',
         )
         style_transferer = StyleTransferer()
 
@@ -64,15 +63,29 @@ class App:
 
             return send_file(result_file_path, mimetype='image/' + get_extenstion_of_file_name(file.filename))
         
+        @app.route('/v1/fairy-tale-first-sentence', methods=('POST', ))
+        def route_fairy_tale_first_sentence():
+            input_sentence = request.json['theme']
+            character1_name = request.json['character1_name']
+            character2_name = request.json['character2_name']
+            output_sentence = fairy_tale_generator.generate_first_sentence(input_sentence, character1_name, character2_name)
+            return jsonify({
+                'data': {
+                    'output_sentence': output_sentence,
+                },
+            })
         
         @app.route('/v1/fairy-tale-sentences', methods=('POST', ))
         def route_fairy_tale_sentences():
             input_sentence = request.json['sentence']
-            output_sentences = fairy_tale_generator.generate(input_sentence)
+            character1_name = request.json['character1_name']
+            character2_name = request.json['character2_name']
+            encoded = request.json['encoded']
+            output_sentences, encoded = fairy_tale_generator.generate_sentence(input_sentence, character1_name, character2_name)
             return jsonify({
                 'data': {
-                    'input_sentence': input_sentence,
                     'output_sentences': output_sentences,
+                    'output_encoded': encoded,
                 },
             })
         

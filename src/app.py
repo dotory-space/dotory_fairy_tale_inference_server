@@ -68,10 +68,10 @@ class App:
             theme_name = request.json['theme_name']
             character1_name = request.json['character1_name']
             character2_name = request.json['character2_name']
-            output_sentence = fairy_tale_generator.generate_first_sentences(theme_name, character1_name, character2_name)
+            output_sentences = fairy_tale_generator.generate_first_sentences(theme_name, character1_name, character2_name)
             return jsonify({
                 'data': {
-                    'output_sentence': output_sentence,
+                    'output_sentences': output_sentences,
                 },
             })
         

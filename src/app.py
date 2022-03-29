@@ -63,12 +63,12 @@ class App:
 
             return send_file(result_file_path, mimetype='image/' + get_extenstion_of_file_name(file.filename))
         
-        @app.route('/v1/fairy-tale-first-sentence', methods=('POST', ))
+        @app.route('/v1/fairy-tale-first-sentences', methods=('POST', ))
         def route_fairy_tale_first_sentence():
             theme_name = request.json['theme_name']
             character1_name = request.json['character1_name']
             character2_name = request.json['character2_name']
-            output_sentence = fairy_tale_generator.generate_first_sentence(theme_name, character1_name, character2_name)
+            output_sentence = fairy_tale_generator.generate_first_sentences(theme_name, character1_name, character2_name)
             return jsonify({
                 'data': {
                     'output_sentence': output_sentence,
